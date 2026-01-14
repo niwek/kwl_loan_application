@@ -56,4 +56,5 @@ def create_loan_application():
 
 
 if __name__ == "__main__":
+    print("Starting server...")
     app.run(debug=True)
