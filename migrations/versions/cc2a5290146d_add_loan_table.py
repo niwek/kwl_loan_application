@@ -59,9 +59,10 @@ def upgrade():
 
             -- Metadata
             status TEXT NOT NULL
+                DEFAULT 'pending'
                 CHECK (status IN ('pending', 'approved', 'rejected')),
 
-            created_at TIMESTAMP DEFAULT now()
+            created_at TIMESTAMPTZ DEFAULT now()
         );
         """
     )

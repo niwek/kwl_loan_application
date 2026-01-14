@@ -35,9 +35,9 @@ class LoanApplication(db.Model):
     monthly_payment_cents = db.Column(db.Integer, nullable=True)
 
     # Metadata
-    status = db.Column(db.Text, nullable=False)
+    status = db.Column(db.Text, nullable=False, server_default=func.now())
     created_at = db.Column(
-        db.DateTime(timezone=False), server_default=func.now(), nullable=True
+        db.DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
     def to_dict(self) -> dict:
