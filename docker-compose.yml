@@ -1,0 +1,17 @@
+services:
+  kwl_loan_application_db:
+    image: postgres
+    container_name: kwl_loan_application_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=kwl_loan_application_db
+      - POSTGRES_USER=kwl_loan_application_db
+      - POSTGRES_PASSWORD=kwl_loan_application_db
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    restart: unless-stopped
+#    volumes:
+#      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U kwl_loan_application_db" ]
+      interval: 5s
