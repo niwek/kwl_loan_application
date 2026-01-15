@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loan Application</title>
+  </head>
+  <body>
+    <h1>Apply for a Loan</h1>
+
+    <form id="loan-form">
+      <fieldset>
+        <legend>Personal Info</legend>
+
+        <label>
+          Full name:
+          <input name="full_name" required />
+        </label>
+        <br />
+
+        <label>
+          Email:
+          <input name="email" type="email" required />
+        </label>
+        <br />
+
+        <label>
+          Phone:
+          <input name="phone" required />
+        </label>
+        <br />
+
+        <label>
+          SSN (9 digits):
+          <input name="ssn" required pattern="^\d{9}$" />
+        </label>
+        <br />
+      </fieldset>
+
+      <fieldset>
+        <legend>Address</legend>
+
+        <label>
+          Address line 1:
+          <input name="address_line_1" required />
+        </label>
+        <br />
+
+        <label>
+          Address line 2:
+          <input name="address_line_2" />
+        </label>
+        <br />
+
+        <label>
+          City:
+          <input name="city" required />
+        </label>
+        <br />
+
+        <label>
+          State (2 letters):
+          <input name="state" required maxlength="2" />
+        </label>
+        <br />
+
+        <label>
+          Zip code:
+          <input name="zip_code" required />
+        </label>
+        <br />
+      </fieldset>
+
+      <fieldset>
+        <legend>Loan</legend>
+
+        <label>
+          Requested amount (USD):
+          <input
+            name="requested_amount_usd"
+            type="number"
+            min="0"
+            step="0.01"
+            required
+          />
+        </label>
+        <br />
+      </fieldset>
+
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <hr />
+
+    <h2>Result</h2>
+    <pre id="result">Submit the form to see the response.</pre>
+
+    <!-- External JavaScript -->
+    <script src="/static/app.js"></script>
+  </body>
+</html>

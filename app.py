@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
 from flask_migrate import Migrate
@@ -27,6 +27,11 @@ migrate = Migrate(app, db)
 @app.route("/ping")
 def ping():
     return "Pong"
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 @app.route("/v1/loan_applications", methods=["POST"])
