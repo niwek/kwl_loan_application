@@ -1,13 +1,14 @@
 # kwl_loan_application
 
 Python 3.12
+Pyenv
 Docker
 
 ```bash
 # Spin up postgres
 docker compose up
 
-# Spin up Backend Flask server on http://127.0.0.1:5000/
+# Spin up Flask server on http://127.0.0.1:5000/
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
