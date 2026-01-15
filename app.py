@@ -67,6 +67,14 @@ def create_loan_application():
 
 
 def compute_loan_offer(loan: LoanApplication):
+    """
+    This loan offer should include a total loan amount, an interest rate, a term, and a monthly payment,
+        all based on the two inputs and the business rules below:
+        If the loan amount requested is less than $10,000 or greater than $50,000, deny the application
+        If the number of credit lines open is <10, a 36-month term and 10% interest applies
+        If the number of credit lines open is <=50 and >=10, a 24-month term and 20% interest applies
+        If the number of credit lines is >50, deny the application
+    """
     if (
         loan.requested_amount_cents < 1000000
         or loan.requested_amount_cents > 5000000
