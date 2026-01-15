@@ -12,6 +12,8 @@ from marshmallow import ValidationError
 
 from models import LoanApplication
 from schemas import LoanApplicationRequestSchema
+from cryptography.fernet import Fernet
+
 
 load_dotenv()
 app = Flask(__name__)
@@ -22,6 +24,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+fernet = Fernet(os.environ["SSN_ENCRYPTION_KEY"].encode())
 
 
 @app.route("/ping")
@@ -45,6 +48,7 @@ def create_loan_application():
         data = LoanApplicationRequestSchema().load(payload)
 
         data["open_credit_lines"] = random.randint(0, 100)
+        data["ssn"] = encrypt_ssn(data["ssn"])
         loan = LoanApplication(**data)
 
         compute_loan_offer(loan)
@@ -96,6 +100,14 @@ def calculate_monthly_payment_cents(
         payment = P * (r * (1 + r) ** n) / ((1 + r) ** n - 1)
 
     return round(payment * 100)  # back to cents
+
+
+def encrypt_ssn(ssn: str) -> str:
+    return fernet.encrypt(ssn.encode()).decode()
+
+
+def decrypt_ssn(token: str) -> str:
+    return fernet.decrypt(token.encode()).decode()
 
 
 if __name__ == "__main__":

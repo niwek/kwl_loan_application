@@ -46,7 +46,7 @@ class LoanApplication(db.Model):
             "full_name": self.full_name,
             "email": self.email,
             "phone": self.phone,
-            "ssn": self.ssn,
+            "ssn": f"***-**-****" if self.ssn else None,
             "address_line_1": self.address_line_1,
             "address_line_2": self.address_line_2,
             "city": self.city,

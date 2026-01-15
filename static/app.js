@@ -18,13 +18,14 @@ form.addEventListener("submit", async (e) => {
 
   const fd = new FormData(form);
 
-  debugger;
+  const rawSsn = (fd.get("ssn") || "").trim();
+  const ssnDigits = rawSsn.replace(/\D/g, ""); // keep only digits
 
   const payload = {
     full_name: fd.get("full_name")?.trim(),
     email: fd.get("email")?.trim(),
     phone: fd.get("phone")?.trim(),
-    ssn: fd.get("ssn")?.trim(),
+    ssn: ssnDigits,
     address_line_1: fd.get("address_line_1")?.trim(),
     address_line_2: (fd.get("address_line_2") || "").trim() || null,
     city: fd.get("city")?.trim(),
