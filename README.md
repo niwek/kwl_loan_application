@@ -22,3 +22,8 @@ To add a new migration:
 ```bash
 flask db revision -m "add loan table"
 ```
+
+To run tests:
+```bash 
+pytest
+```

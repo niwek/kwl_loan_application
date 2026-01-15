@@ -63,6 +63,7 @@ def create_loan_application():
         db.session.rollback()
         return jsonify({"error": "Database error", "message": str(err)}), 500
     except Exception as err:
+        db.session.rollback()
         return jsonify({"error": "Internal server error", "message": str(err)}), 500
 
 
